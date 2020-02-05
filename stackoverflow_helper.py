@@ -75,6 +75,23 @@ def fill_nans(data):
             data[column] = data[column].fillna(data[column].mean())
     return data
 
+def multiselect_parser(df, column):
+    d = {}
+    for index, row in df.iterrows():
+        not_strings = []
+        if type(row[column]) == str:
+            list_ = row[column].split(';')
+        else:
+            list_ = []
+        items = {}
+        
+        for item in list_:
+            items[item] = 1
+        
+        d[index] = items
+
+    return d
+
 
 def get_analysis_data(raw_data, columns_no_replace=None):
     """
@@ -99,6 +116,14 @@ def get_analysis_data(raw_data, columns_no_replace=None):
         countries = raw_data['Country'].replace(d.country_to_region)
         mapped = mapped.merge(pd.get_dummies(countries), on='Respondent')
         mapped = mapped.drop(columns = ['Country'])
+        
+    # Parse columns with multivalues into dummy variables
+    for column in mapped.columns:
+        if column in ['DevType', 'LastInt', 'JobFactors', 'WorkChallenge', 'LanguageWorkedWith', 'LanguageDesireNextYear', 'DatabaseWorkedWith', 'DatabaseDesireNextYear', 'PlatformWorkedWith', 'PlatformDesireNextYear', 'WebFrameWorkedWith', 'WebFrameDesireNextYear', 'MiscTechWorkedWith', 'MiscTechDesireNextYear', 'DevEnviron', 'Containers', 'Gender', 'Sexuality', 'Ethnicity']:
+            dy = multiselect_parser(mapped, column)
+            dy = pd.DataFrame(dy).T.fillna(0)
+            mapped = mapped.merge(pd.get_dummies(dy), left_on='Respondent', right_index=True)
+            mapped = mapped.drop(columns = column)
         
     ###### 4. Fill the nans (custom logic in fill_nans function)
     to_return = fill_nans(mapped)
