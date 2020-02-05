@@ -82,13 +82,13 @@ def get_analysis_data(raw_data, columns_no_replace=None):
     Optional value: Pass in column names that do not need replacement.
     """
     
-    # 1. Remove unneeded rows
+    ###### 1. Remove unneeded rows
     culled = remove_unneeded_data(raw_data)
     
-    # 2. Replace text values with numbers for ordinal/boolean questions
+    ###### 2. Replace text values with numbers for ordinal/boolean questions
     mapped = replace_data(culled, d.survey_values, columns_no_replace)
 
-    # 3. Custom logic for certain fields
+    ###### 3. Custom logic for certain fields
     # WorkWeekHrs has numbers larger than 168 (total number of hours available on a week). 
     # Reducing all over 100 to 100.
     if 'WorkWeekHrs' in mapped.columns:
@@ -100,7 +100,7 @@ def get_analysis_data(raw_data, columns_no_replace=None):
         mapped = mapped.merge(pd.get_dummies(countries), on='Respondent')
         mapped = mapped.drop(columns = ['Country'])
         
-    # 4. Fill the nans (custom logic in fill_nans function)
+    ###### 4. Fill the nans (custom logic in fill_nans function)
     to_return = fill_nans(mapped)
 
     return to_return
