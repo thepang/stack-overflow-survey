@@ -77,7 +77,7 @@ survey_values ={
         'Very confident' : 3,
         'Somewhat confident' : 2,
         'Not at all confident' : 1,
-        "I don't have a manager" : 0 
+        "I don't have a manager" : 3 
     },
     'OpenSourcer' : {
         'Never' : 0,
@@ -267,6 +267,20 @@ survey_values ={
         'Weibo 新浪微博' :  'SM_Weibo',
         'Youku Tudou 优酷' :  'SM_Youku',
         'Hello' :  'SM_Hello',
+    },
+    'UndergradMajor' : {
+        'Computer science, computer engineering, or software engineering' :  'Maj_CS',
+        'Another engineering discipline (ex. civil, electrical, mechanical)' :  'Maj_Eng',
+        'Information systems, information technology, or system administration' :  'Maj_IT',
+        'Web development or web design' :  'Maj_Web',
+        'A natural science (ex. biology, chemistry, physics)' :  'Maj_Science',
+        'Mathematics or statistics' :  'Maj_Math',
+        'A humanities discipline (ex. literature, history, philosophy)' :  'Maj_Hum',
+        'A business discipline (ex. accounting, finance, marketing)' :  'Maj_Business',
+        'Fine arts or performing arts (ex. graphic design, music, studio art)' :  'Maj_FA',
+        'A social science (ex. anthropology, psychology, political science)' :  'Maj_SocSci',
+        'I never declared a major' :  'Maj_None',
+        'A health science (ex. nursing, pharmacy, radiology)' :  'Maj_Health'
     }
 
 
