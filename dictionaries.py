@@ -27,8 +27,8 @@ survey_values ={
         'No' : 0  
     },
     'SOAccount' : {
-        'Yes' : 1
-        'No' : 0
+        'Yes' : 1,
+        'No' : 0,
         "Not sure / can't remember" : 0
     },
     'CodeRev' : {
@@ -50,11 +50,13 @@ survey_values ={
         'In real life (in person)' : 1,
         'Online' : .5,
         'Neither' : 0
+    },    
+    'UnitTests' : {
+        "Yes, it's part of our process" : 1,
+        "Yes, it's not part of our process but the developers do it on their own" : .6,
+        'No, but I think we should' : .3,
+        "No, and I'm glad we don't" : 0
     },
-
-
-
-    
     'Student' : {
         'No' : 0,
         'Yes, full-time' : .5,
@@ -141,7 +143,7 @@ survey_values ={
     'SOVisit1st' : {
         '2010' : 10,
         '2008' : 8,
-        "I don't remember" : 0
+        "I don't remember" : 0,
         '2012' : 12,
         '2009' : 9,
         '2011' : 11,
@@ -211,6 +213,12 @@ survey_values ={
         'Primary/elementary school' : 8,
         'I never completed any formal education' : 0
     },
+    'PurchaseHow' : {
+        'Not sure' : 0,
+        'Developers typically have the most influence on purchasing new technology' : 1,
+        'Developers and management have nearly equal input into purchasing new technology' : .5,
+        'The CTO, CIO, or other management purchase new technology typically without the involvement of developers' : 0
+    },
 
     
     
@@ -225,7 +233,42 @@ survey_values ={
     'YearsCodePro' : {
         'Less than 1 year' : 0,
         'More than 50 years' : 52
+    },
+    
+    'OpSys' : {
+        'Windows' : 'OpSys_Win',
+        'MacOS' : 'OpSys_Mac',
+        'Linux-based' : 'OpSys_Linux',
+        'BSD' : 'OpSys_BSD'
+    },
+    'ITperson' : {
+        'Yes' : 'IT_Yes',
+        'SIGH' : 'IT_SIGH',
+        'Also Yes' : 'IT_AYes',
+        'Fortunately, someone else has that title' : 'IT_Else'
+    },
+    'OffOn' : {
+        'Yes' : 'OffOn_Yes', 
+        'What?' :  'OffOn_What',
+        'No' : 'OffOn_No'
+    },
+    'SocialMedia' : {
+        'Reddit' :  'SM_Red',
+        'Facebook' :  'SM_FB',
+        'WhatsApp' :  'SM_WhatApp',
+        'Twitter' :  'SM_Twitt',
+        'YouTube' :  'SM_YouT',
+        'Instagram' :  'SM_Insta',
+        "I don't use social media" :  'SM_None',
+        'LinkedIn' :  'SM_LinkedIn',
+        'WeChat 微信' :  'SM_WeChat',
+        'VK ВКонта́кте' :  'SM_VK',
+        'Snapchat' :  'SM_Snap',
+        'Weibo 新浪微博' :  'SM_Weibo',
+        'Youku Tudou 优酷' :  'SM_Youku',
+        'Hello' :  'SM_Hello',
     }
+
 
 }
 

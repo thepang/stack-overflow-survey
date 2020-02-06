@@ -104,8 +104,15 @@ def get_analysis_data(raw_data, columns_no_replace=None):
             dy = pd.DataFrame(dy).T.fillna(0)
             mapped = mapped.merge(pd.get_dummies(dy), left_on='Respondent', right_index=True)
             mapped = mapped.drop(columns = column)
+    
+    # Add dummied data for the following columns
+    for column in mapped.columns:
+        if column in ['UndergradMajor', 'OpSys', 'ITperson', 'OffOn', 'SocialMedia', 'ScreenName']:
+            mapped = mapped.merge(pd.get_dummies(mapped[column]), on='Respondent')
+            mapped = mapped.drop(columns = column)
         
     ###### 4. Fill the nans (custom logic in fill_nans function)
     to_return = fill_nans(mapped)
 
     return to_return
+
