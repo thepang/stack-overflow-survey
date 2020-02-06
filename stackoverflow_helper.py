@@ -1,12 +1,6 @@
 import pandas as pd
 import dictionaries as d
 
-def get_dictionary():
-    return d.sdf
-
-def response_map(value=''):
-    return survey_values
-
 def remove_unneeded_data(data):
     """
     There are rows that need to be removed from the data set.
@@ -22,22 +16,6 @@ def remove_unneeded_data(data):
 
     return data
     
-    
-def unused_data(data):
-    """
-    Returns dataframe with columns that only contain columns
-    that are not part of survey_values (except JobSat).
-    Columns that I've determined are not needed are also not returned.
-    """
-    culled = remove_unneeded_data(data)
-    for column in survey_values.keys():
-        if column!='JobSat':
-            culled = culled.drop(columns=[column])
-        
-    culled = culled.drop(columns=['CurrencySymbol', 'CurrencyDesc', 'CompTotal', 'CompFreq', 'MainBranch', 'Employment'])
-    
-    return culled
-
 
 def replace_data(data, mapping_dictionary, additional_data=None):
     """
@@ -65,14 +43,16 @@ def fill_nans(data):
     Returns dataframe with NaNs filled with mean or mode, 
     based on some hard coded understanding of the data.
     """
+    
+    
     for column in data.columns:
         if column in ['YearsCode', 'Age1stCode', 'YearsCodePro']:
             data[column] = data[column].fillna(data[column].dropna().astype('int64').mean())
-        elif column in ['BetterLife', 'Dependents', 'Hobbyist', 'Student', 'MgrMoney', 'MgrWant', 'MgrIdiot', 'OpenSourcer' , 'PurchaseWhat', 'OpenSource', 'FizzBuzz', 'Trans', 'SurveyEase', 'SurveyLength']:
+        elif column in ['Age', 'ConvertedComp', 'WorkWeekHrs', 'CodeRevHrs', 'OrgSize', 'SOPartFreq', '']:
+            data[column] = data[column].fillna(data[column].mean())
+        else:
             new_mode = data[column].mode()
             data[column] = data[column].fillna(new_mode[0])
-        else:
-            data[column] = data[column].fillna(data[column].mean())
     return data
 
 def multiselect_parser(df, column):
@@ -86,7 +66,7 @@ def multiselect_parser(df, column):
         items = {}
         
         for item in list_:
-            items[item] = 1
+            items[f'{column}_{item}'] = 1
         
         d[index] = items
 
@@ -119,7 +99,7 @@ def get_analysis_data(raw_data, columns_no_replace=None):
         
     # Parse columns with multivalues into dummy variables
     for column in mapped.columns:
-        if column in ['DevType', 'LastInt', 'JobFactors', 'WorkChallenge', 'LanguageWorkedWith', 'LanguageDesireNextYear', 'DatabaseWorkedWith', 'DatabaseDesireNextYear', 'PlatformWorkedWith', 'PlatformDesireNextYear', 'WebFrameWorkedWith', 'WebFrameDesireNextYear', 'MiscTechWorkedWith', 'MiscTechDesireNextYear', 'DevEnviron', 'Containers', 'Gender', 'Sexuality', 'Ethnicity']:
+        if column in d.multi_select_fields:
             dy = multiselect_parser(mapped, column)
             dy = pd.DataFrame(dy).T.fillna(0)
             mapped = mapped.merge(pd.get_dummies(dy), left_on='Respondent', right_index=True)

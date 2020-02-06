@@ -26,6 +26,33 @@ survey_values ={
         'Yes' : 1,
         'No' : 0  
     },
+    'SOAccount' : {
+        'Yes' : 1
+        'No' : 0
+        "Not sure / can't remember" : 0
+    },
+    'CodeRev' : {
+        'Yes, because I see value in code review' : 1,
+        'No' : 0,
+        'Yes, because I was told to do so' : .5
+    },
+    'WorkPlan' : {
+        "There is a schedule and/or spec (made by me or by a colleague), and my work somewhat aligns" : .5,
+        "There's no schedule or spec; I work on what seems most important or urgent" : 0,
+        "There is a schedule and/or spec (made by me or by a colleague), and I follow it very closely" : 1
+    },
+    'WorkLoc' : {
+        'Office' : 1,
+        'Home' : 0,
+        'Other place, such as a coworking space or cafe' : .5
+    },
+    'Extraversion' : {
+        'In real life (in person)' : 1,
+        'Online' : .5,
+        'Neither' : 0
+    },
+
+
 
     
     'Student' : {
@@ -103,6 +130,55 @@ survey_values ={
         'Daily or almost daily' : 20,
         'Multiple times per day' : 40
      },
+    'SOVisitFreq' : {
+        'Multiple times per day': 1000,
+        'Daily or almost daily' : 365,
+        'A few times per week' : 100,
+        'A few times per month or weekly' : 30, 
+        'Less than once per month or monthly' : 12,
+        'I have never visited Stack Overflow (before today)' : 0
+    },
+    'SOVisit1st' : {
+        '2010' : 10,
+        '2008' : 8,
+        "I don't remember" : 0
+        '2012' : 12,
+        '2009' : 9,
+        '2011' : 11,
+        '2013' : 13,
+        '2014' : 14,
+        '2015' : 15,
+        '2016' : 16,
+        '2017' : 17,
+        '2019' : 19,
+        '2018' : 18,
+    },
+    'SOFindAnswer' : {
+        '3-5 times per week' : 3,
+        '1-2 times per week' : 1,
+        'More than 10 times per week' : 10,
+        '6-10 times per week' : 6,
+        'Less than once per week' : 0
+    },
+    'SOHowMuchTime' : {
+        '11-30 minutes' : 11,
+        '0-10 minutes' : 0,
+        '31-60 minutes' : 31,
+        '60+ minutes' : 60
+    },
+    'SOTimeSaved' : {
+        'Stack Overflow was much faster' : 5,
+        'Stack Overflow was slightly faster' : 4,
+        'They were about the same' : 3,
+        'The other resource was slightly faster' : 2,
+        'The other resource was much faster' : 1
+    },
+
+
+
+
+
+
     'OrgSize' : {
         '20 to 99 employees' : 20,
         '100 to 499 employees' : 100,
@@ -114,14 +190,7 @@ survey_values ={
         '5,000 to 9,999 employees' : 5000,
         'Just me - I am a freelancer, sole proprietor, etc.' : 0
     },
-    'SOVisitFreq' : {
-        'Multiple times per day': 1000,
-        'Daily or almost daily' : 365,
-        'A few times per week' : 100,
-        'A few times per month or weekly' : 30, 
-        'Less than once per month or monthly' : 12,
-        'I have never visited Stack Overflow (before today)' : 0
-    },
+
     'WorkRemote' : {
         'Less than once per month / Never' : 0,
         'A few days each month' : 3,
@@ -130,6 +199,17 @@ survey_values ={
         "It's complicated" : 0,
         'More than half, but not all, the time' : 15,
         'About half the time' : 10
+    },
+    'EdLevel' : {
+        'Other doctoral degree (Ph.D, Ed.D., etc.)' : 20,
+        'Professional degree (JD, MD, etc.)' : 20,
+        'Master’s degree (MA, MS, M.Eng., MBA, etc.)' : 18,
+        'Bachelor’s degree (BA, BS, B.Eng., etc.)' : 16,
+        'Associate degree' : 14,
+        'Some college/university study without earning a degree' : 13,
+        'Secondary school (e.g. American high school, German Realschule or Gymnasium, etc.)' : 12,
+        'Primary/elementary school' : 8,
+        'I never completed any formal education' : 0
     },
 
     
@@ -148,6 +228,16 @@ survey_values ={
     }
 
 }
+
+multi_select_fields = [
+    'DevType', 'LastInt', 'JobFactors', 'WorkChallenge', 
+    'LanguageWorkedWith', 'LanguageDesireNextYear', 
+    'DatabaseWorkedWith', 'DatabaseDesireNextYear', 
+    'PlatformWorkedWith', 'PlatformDesireNextYear', 
+    'WebFrameWorkedWith', 'WebFrameDesireNextYear', 
+    'MiscTechWorkedWith', 'MiscTechDesireNextYear', 
+    'DevEnviron', 'Containers', 'Gender', 'Sexuality', 'Ethnicity', 'SOVisitTo'
+]
 
 country_to_region = {
     'United States' : 'United States',
