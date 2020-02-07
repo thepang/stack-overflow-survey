@@ -86,9 +86,9 @@ survey_values ={
         'Once a month or more often' : 13,
     },
     'PurchaseWhat' : {
-        'I have little or no influence' : 0,
-        'I have some influence' : .5,
-        'I have a great deal of influence' : 1
+        'I have little or no influence' : 2,
+        'I have some influence' : 1,
+        'I have a great deal of influence' : 0
     },
     'OpenSource' : {
         'The quality of OSS and closed source software is about the same' : .5,
@@ -214,10 +214,10 @@ survey_values ={
         'I never completed any formal education' : 0
     },
     'PurchaseHow' : {
-        'Not sure' : 0,
-        'Developers typically have the most influence on purchasing new technology' : 1,
-        'Developers and management have nearly equal input into purchasing new technology' : .5,
-        'The CTO, CIO, or other management purchase new technology typically without the involvement of developers' : 0
+        'Not sure' : 1,
+        'Developers typically have the most influence on purchasing new technology' : 0,
+        'Developers and management have nearly equal input into purchasing new technology' : 1,
+        'The CTO, CIO, or other management purchase new technology typically without the involvement of developers' : 2
     },
 
     
