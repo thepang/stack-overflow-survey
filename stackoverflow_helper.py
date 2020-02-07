@@ -1,6 +1,10 @@
 import pandas as pd
 import dictionaries as d
 
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, roc_curve
+from sklearn.model_selection import cross_val_score
+
 def remove_unneeded_data(data):
     """
     There are rows that need to be removed from the data set.
@@ -116,3 +120,42 @@ def get_analysis_data(raw_data, columns_no_replace=None):
 
     return to_return
 
+
+
+## Post import feature engineering
+
+def test_model(train_input, train_output, test_input, test_expected, n=35, md=7, msl=23, c='entropy'):
+    rfc = RandomForestClassifier(n_estimators=n, max_depth=md, min_samples_leaf=msl, criterion=c)
+    rfc.fit(train_input, train_output)
+
+    accuracy = cross_val_score(rfc, test_input, test_expected, cv=5, scoring='accuracy')
+    precision = cross_val_score(rfc, test_input, test_expected, cv=5, scoring='precision')
+    recall = cross_val_score(rfc, test_input, test_expected, cv=5, scoring='recall')
+    f1 = cross_val_score(rfc, test_input, test_expected, cv=5, scoring='f1')
+    roc_auc_score = cross_val_score(rfc, test_input, test_expected, cv=5, scoring='roc_auc')
+
+    results = {}
+
+    for name, item in [('roc_auc', roc_auc_score), 
+                       ('accuracy', accuracy), 
+                       ('precision', precision), 
+                       ('recall', recall), ('f1', f1)]:
+        results.update({name: item.mean()})
+    return results
+
+def get_sum_of_tech(data):
+    """
+    Just sums the 1s from any column with text "DesireNextYear"
+    with the assumption that general larger desire to work with tech correlates with higher JobSat.
+
+    Does the same for those that respondant said they worked with it, just 'cause.
+    """
+    d = {}
+    for index, row in data.iterrows():
+        d[index] = {
+            'f_want' : row.filter(like='DesireNextYear').sum().sum(),
+            'f_know' : row.filter(like='WorkedWith_').sum().sum()
+        }
+    database_stuff = pd.DataFrame(d)
+    
+    return database_stuff.T
