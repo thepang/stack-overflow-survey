@@ -60,6 +60,13 @@ def fill_nans(data):
     return data
 
 def multiselect_parser(df, column):
+    """
+    Iterates through the dataframe and splits the text in 'column'.
+    Returns a dictionary where the key is the row's index. 
+    Value is another dictionary where:
+        Key is the substring of text in column (split on ';')
+        Value is 1.
+    """
     d = {}
     for index, row in df.iterrows():
         not_strings = []
@@ -125,6 +132,11 @@ def get_analysis_data(raw_data, columns_no_replace=None):
 ## Post import feature engineering
 
 def test_model(train_input, train_output, test_input, test_expected, n=35, md=7, msl=23, c='entropy'):
+    """
+    Runs RandomForest Classifier on train_input and train_output using the default values: 
+    n_estimators=3, max_depth=7, min_samples_leaf=23, criterion='entropy'.
+    Returns a dictionary of scores where the keys are 'roc_auc', 'accuracy', 'precision', and 'recall'.
+    """
     rfc = RandomForestClassifier(n_estimators=n, max_depth=md, min_samples_leaf=msl, criterion=c)
     rfc.fit(train_input, train_output)
 
