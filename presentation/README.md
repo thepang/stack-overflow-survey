@@ -1,0 +1,1 @@
+My presentation for Metis. It was designed to be presented to a theoretically workshop at an HR conference. StackOverflow has agreed to send a representative (me) to share data and analysis to improve the lives of developers.
